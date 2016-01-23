@@ -1,0 +1,91 @@
+
+// ================================ //
+// •••••••••••••••••••••••••••••••• //
+// •••••••••••••••••••••••••••••••• //
+//            ❯ HELPERS             //
+// •••••••••••••••••••••••••••••••• //
+// •••••••••••••••••••••••••••••••• //
+
+//
+// Hide visually and from screen readers:
+.hidden { display : none !important; }
+
+
+
+// Hide only visually, but have it available for screen readers:
+// http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+.visuallyhidden {
+    border   : 0;
+    clip     : rect(0 0 0 0);
+    height   : 1px;
+    margin   : -1px;
+    overflow : hidden;
+    padding  : 0;
+    position : absolute;
+    width    : 1px;
+}
+
+
+
+
+// Hide visually and from screen readers, but maintain layout
+.invisible { visibility : hidden; }
+
+
+
+// ================================ //
+// •••••••••••••••••••••••••••••••• //
+// •••••••••••••••••••••••••••••••• //
+//            ❯ CLEARFIX            //
+// •••••••••••••••••••••••••••••••• //
+// •••••••••••••••••••••••••••••••• //
+
+//  For modern browsers
+//  1. The space content is one way to avoid an Opera bug when the
+//  `contenteditable` attribute is included anywhere else in the document.
+//  Otherwise it causes space to appear at the top and bottom of elements
+//  2. The use of `table` rather than `block` is only necessary if using
+//  ":before" to contain the top-margins of child elements.
+.clearfix {
+
+    &:before,
+    &:after {
+        display : table;    // 2
+        content : " ";      // 1
+    }
+
+    &:after { clear : both; }
+}
+
+
+
+// ================================ //
+// •••••••••••••••••••••••••••••••• //
+// •••••••••••••••••••••••••••••••• //
+//              ❯ FLOAT            //
+// •••••••••••••••••••••••••••••••• //
+// •••••••••••••••••••••••••••••••• //
+
+.left  { float : left; }
+.right { float : right; }
+
+
+
+// ================================ //
+// •••••••••••••••••••••••••••••••• //
+// •••••••••••••••••••••••••••••••• //
+//             ❯ CENTER             //
+// •••••••••••••••••••••••••••••••• //
+// •••••••••••••••••••••••••••••••• //
+
+.center {
+  position  : absolute;
+  top       : 50%;
+  left      : 50%;
+  transform : translate(-50%, -50%);
+}
+
+.txtcenter { text-align : center; }
+
+
+
