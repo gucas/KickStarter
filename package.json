@@ -1,0 +1,26 @@
+{
+    "name"            : "KickStarter",
+    "version"         : "0.0.1",
+    "main"            : "gulpfile.js",
+    "author"          : "GuCas",
+    "homepage"        : "https://github.com/gucas",
+    "devDependencies" : {
+        "gulp"              : "latest",
+        "gulp-load-plugins" : "latest",
+        "gulp-plumber"      : "latest",
+        "gulp-sourcemaps"   : "latest",
+        "gulp-less"         : "latest",
+        "gulp-pixrem"       : "latest",
+        "gulp-combine-mq"   : "latest",
+        "gulp-scss"         : "latest",
+        "gulp-csscomb"      : "latest",
+        "gulp-cssbeautify"  : "latest",
+        "gulp-autoprefixer" : "latest",
+        "gulp-csso"         : "latest",
+        "gulp-uncss"        : "latest",
+        "gulp-rename"       : "latest",
+        "gulp-sourcemaps"   : "latest",
+        "gulp-htmlmin"      : "latest",
+        "critical"          : "latest"
+    }
+}
