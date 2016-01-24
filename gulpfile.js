@@ -5,7 +5,6 @@
 // === START ======================
 // ================================
 // ================================
-var gulp = require('gulp');
 // ================================
 // ================================
 // ================================
@@ -13,7 +12,10 @@ var gulp = require('gulp');
 // === LOAD ALL PACKAGE.JSON PLUGIN
 // ================================
 // ================================
-var plugins = require('gulp-load-plugins')();
+var gulp      = require('gulp');
+var plugins   = require('gulp-load-plugins')();
+var combineMq = require('gulp-combine-mq');
+var critical  = require('critical');
 // ================================
 // ================================
 // ================================
@@ -43,16 +45,9 @@ var onError = {
 };
 
 
-var combineMq = 'gulp-combine-mq';
 // ================================
 // ================================
 // ================================
-
-
-
-
-
-
 
 
 
@@ -119,6 +114,20 @@ gulp.task('optimCSS', function () {
 // ================================
 // ================================
 
+gulp.task('critical', ['prod'], function (cb) {
+    critical.generate({
+        inline  : true,
+        base    : 'build/',
+        css     : 'build/css/app.min.css',
+        src     : 'index.html',
+        dest    : 'build/index-min.html',
+        minify  : true,
+        width   : 768,
+        height  : 1024,
+        extract : false,
+        ignore  : ['font-face']
+    });
+});
 
 
 // === HTML ======================
@@ -140,7 +149,7 @@ gulp.task('optimHTML', function() {
         }))
 
         // Extracts & inlines critical-path (above-the-fold) CSS from HTML.
-        // .pipe(plugins.critical({
+        // .pipe(critical({
         //     inline : true,
         //     width  : 320,
         //     height : 480,
@@ -154,6 +163,7 @@ gulp.task('optimHTML', function() {
 // ================================
 // ================================
 // ================================
+
 
 
 
@@ -204,6 +214,7 @@ gulp.task('buildImg', function () {
 
 
 
+
 // === MAIN TASK LAUNCHER =========
 // ================================
 // ================================
@@ -225,3 +236,6 @@ gulp.task('watch', function () {
 // ================================
 // ================================
 // ================================
+
+
+
