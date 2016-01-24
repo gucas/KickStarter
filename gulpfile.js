@@ -206,12 +206,6 @@ gulp.task('buildImg', function () {
 
 // === MAIN TASK LAUNCHER =========
 // ================================
-// === WATCH ======================
-// ================================
-gulp.task('watch', function () {
-    gulp.watch(sourcePathLESS + '*.less', ['css']);
-    gulp.watch(sourcePath + '*.html', ['html']);
-});
 // ================================
 // === DEV ========================
 // ================================
@@ -221,6 +215,12 @@ gulp.task('default', ['buildCSS']);
 // ================================
 gulp.task('prod', ['buildCSS', 'optimCSS', 'optimHTML']);
 // ================================
+// === WATCH ======================
+// ================================
+gulp.task('watch', function () {
+    gulp.watch(sourcePathLESS + '**/*.{less,css}', ['buildCSS']);
+    // gulp.watch(sourcePath + '*.html', ['html']);
+});
 // ================================
 // ================================
 // ================================

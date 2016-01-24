@@ -388,7 +388,6 @@ body
 {
     font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
     font-size: 16px;
-    font-size: 16px;
     font-size: 1.6rem;
     font-weight: 300;
 
@@ -412,17 +411,6 @@ body
     background: #b3d4fc;
     text-shadow: none;
 }
-hr
-{
-    display: block;
-
-    height: 1px;
-    margin: 1em 0;
-    padding: 0;
-
-    border: 0;
-    border-top: 1px solid #ccc;
-}
 audio,
 canvas,
 iframe,
@@ -431,13 +419,6 @@ svg,
 video
 {
     vertical-align: middle;
-}
-fieldset
-{
-    margin: 0;
-    padding: 0;
-
-    border: 0;
 }
 textarea
 {
