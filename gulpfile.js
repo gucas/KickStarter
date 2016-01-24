@@ -114,21 +114,6 @@ gulp.task('optimCSS', function () {
 // ================================
 // ================================
 
-gulp.task('critical', ['prod'], function (cb) {
-    critical.generate({
-        inline  : true,
-        base    : 'build/',
-        css     : 'build/css/app.min.css',
-        src     : 'index.html',
-        dest    : 'build/index-min.html',
-        minify  : true,
-        width   : 768,
-        height  : 1024,
-        extract : false,
-        ignore  : ['font-face']
-    });
-});
-
 
 // === HTML ======================
 // ================================
@@ -147,16 +132,6 @@ gulp.task('optimHTML', function() {
             collapseInlineTagWhitespace : true,
             removeEmptyAttributes       : true
         }))
-
-        // Extracts & inlines critical-path (above-the-fold) CSS from HTML.
-        // .pipe(critical({
-        //     inline : true,
-        //     width  : 320,
-        //     height : 480,
-        //     minify : true
-        // }))
-
-
 
     .pipe(gulp.dest(destinationPath))
 });
@@ -224,7 +199,7 @@ gulp.task('default', ['buildCSS']);
 // ================================
 // === PROD =======================
 // ================================
-gulp.task('prod', ['buildCSS', 'optimCSS', 'optimHTML']);
+gulp.task('preProd', ['buildCSS', 'optimCSS', 'optimHTML']);
 // ================================
 // === WATCH ======================
 // ================================
@@ -236,6 +211,21 @@ gulp.task('watch', function () {
 // ================================
 // ================================
 // ================================
+
+gulp.task('prod', ['preProd'], function (cb) {
+    critical.generate({
+        inline  : true,
+        base    : destinationPath,
+        css     : destinationPathCSS + 'app.min.css',
+        src     : 'index.html',
+        dest    : destinationPath + 'index-min.html',
+        minify  : true,
+        width   : 768,
+        height  : 1024,
+        extract : false,
+        ignore  : ['font-face']
+    });
+});
 
 
 
