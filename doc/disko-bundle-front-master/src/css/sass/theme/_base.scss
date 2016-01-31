@@ -1,0 +1,83 @@
+//  1. For REM size police (=10px)
+//  2. Prevent iOS text size adjust after orientation change,
+//  without disabling
+html {
+    box-sizing                  : border-box;
+    font-size                   : 62.5%;   // 1
+    line-height                 : 1.3;     // Customize
+    color                       : #222;    // Customize
+    -ms-text-size-adjust        : 100%;    // 2
+    -webkit-text-size-adjust    : 100%;    // 2
+    -webkit-backface-visibility : hidden; // Corrige un bug pour les animations sous webkit.
+    -webkit-tap-highlight-color : #000; // A definir
+}
+
+
+//  Apply a natural box layout model to all elements,
+//  but allowing components to change.
+* {
+    &,
+    &:before,
+    &:after { box-sizing: inherit; }
+}
+
+
+//  1. Customize color to match your design.
+//  2. Chrome bug rem polices. (Mixin : .font_size(1.6); ).
+//  3. Animation bug for webkit.
+body {
+    font-size                   : 16px;     // 2
+    font-size                   : 1.6rem;   // 2
+    background                  : $white;     // 1     // 1
+    -webkit-backface-visibility : hidden;   // 3
+    -webkit-tap-highlight-color : $red-light;     // 1
+    -moz-osx-font-smoothing     : grayscale;
+    min-width                   : 32rem;
+    font-family                 : "TradeGothicLT", Helvetica, Arial, sans-serif;
+    word-wrap                   : break-word;
+    hyphens                     : auto;
+}
+
+//  Remove text-shadow in selection highlight:
+//  https://twitter.com/miketaylr/status/12228805301
+//
+//  These selection rule sets have to be separate.
+//  Customize the background color to match your design.
+::-moz-selection { background : #b3d4fc; text-shadow : none; }
+::selection      { background : #b3d4fc; text-shadow : none; }
+
+
+
+
+//  Remove the gap between audio, canvas, iframes,
+//  images, videos and the bottom of their containers:
+//  https://github.com/h5bp/html5-boilerplate/issues/440
+audio,
+canvas,
+iframe,
+img,
+svg,
+video { vertical-align : middle; }
+
+
+//  Remove default fieldset styles.
+fieldset {
+    border  : 0;
+    margin  : 0;
+    padding : 0;
+}
+
+
+//  Allow only vertical resizing of textareas.
+textarea { resize : vertical; }
+
+
+//  Browser Upgrade Prompt.
+.browserupgrade {
+    margin     : .2em 0;
+    background : #ccc;  // Customize
+    color      : #000;  // Customize
+    padding    : .2em 0;
+}
+
+a { text-decoration : none; }

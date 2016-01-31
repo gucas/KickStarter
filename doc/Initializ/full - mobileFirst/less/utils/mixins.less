@@ -1,0 +1,249 @@
+
+
+
+// ================================ //
+// ================================ //
+// •••••••••••••••••••••••••••••••• //
+//             REM ❯                //
+// •••••••••••••••••••••••••••••••• //
+// •••••••••••••••••••••••••••••••• //
+
+// POLICE EN PX & REM
+/* NE PAS OUBLIER D'ATTRIBUER : html { font-size: 62.5%; } */
+.size(@sizeValue) {
+    @remValue : @sizeValue;
+    @pxValue  : (@sizeValue * 10);
+    font-size : ~"@{pxValue}px";
+    font-size : ~"@{remValue}rem";
+}
+
+// =============================================================================
+// Base -> Mixins -> to-REM
+// =============================================================================
+
+@to-rem-font-size: @font-size;
+
+//
+// Convert unitless pixel values to rem.
+//
+// Usage
+//
+// .selector {
+//   .to-rem(left, 1);
+//   .to-rem(padding, 10 5 12);
+//   .to-rem(border, 1, solid green);
+//   .to-rem(box-shadow, 1 1 0 -1, rgba(0, 0, 0, 0.3));
+//   .to-rem(margin, 30 auto 0);
+// }
+//
+// @link http://cbrac.co/15UAPWx
+//
+
+.to-rem(@property, @size-values, @rest-link-params : false) {
+
+  @property-rem: ~'/*rem*/'@property;
+  @property-px: ~'/*px*/'@property;
+
+  .to-rem-loop();
+
+  .to-rem-loop(@amount : length(@size-values), @i : 1) when (@i =< @amount) {
+
+    @size-value: extract(@size-values, @i);
+
+    & when (iskeyword(@size-value)) {
+      @px-value  : @size-value;
+      @rem-value : @size-value;
+      @{property-px}+_ : ~"@{px-value}";
+      @{property-rem}+_ : ~"@{rem-value}";
+    }
+
+    & when not (iskeyword(@size-value)) {
+
+      @px-value  : @size-value;
+      @rem-value : @size-value / @to-rem-font-size;
+
+      & when not (@px-value = 0) {
+        @{property-px}+_ : ~"@{px-value}px";
+      }
+
+      & when (@px-value = 0) {
+        @{property-px}+_ : @px-value;
+      }
+
+      & when not (@rem-value = 0) {
+        @{property-rem}+_ : ~"@{rem-value}rem";
+      }
+
+      & when (@rem-value = 0) {
+        @{property-rem}+_ : @rem-value;
+      }
+
+    }
+
+    .to-rem-loop(@amount, (@i + 1));
+
+  }
+
+  & when not (@rest-link-params = false) {
+    @{property-px}+_ : @rest-link-params;
+  }
+
+  & when not (@rest-link-params = false) {
+    @{property-rem}+_ : @rest-link-params;
+  }
+
+}
+// =============================================================================
+// Base -> Mixins -> Media Queries
+// =============================================================================
+
+//
+// Media query mixins for various screen sizes.
+//
+// @link http://cbrac.co/1tB2TXR
+//
+
+// Extra-small and up
+.screen-xs-min(@rules) {
+  @media (min-width: @screen-xs-min) {
+    @rules();
+  }
+}
+
+// Extra-small and down
+.screen-xs-max(@rules) {
+  @media (max-width: @screen-xs-max) {
+    @rules();
+  }
+}
+
+// Extra-small only
+.screen-xs(@rules) {
+  @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+    @rules();
+  }
+}
+
+// Small and up
+.screen-sm-min(@rules) {
+  @media (min-width: @screen-sm-min) {
+    @rules();
+  }
+}
+
+// Small and down
+.screen-sm-max(@rules) {
+  @media (max-width: @screen-sm-max) {
+    @rules();
+  }
+}
+
+// Small only
+.screen-sm(@rules) {
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    @rules();
+  }
+}
+
+// Medium and up
+.screen-md-min(@rules) {
+  @media (min-width: @screen-md-min) {
+    @rules();
+  }
+}
+
+// Medium and down
+.screen-md-max(@rules) {
+  @media (max-width: @screen-md-max) {
+    @rules();
+  }
+}
+
+// Medium only
+.screen-md(@rules) {
+  @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+    @rules();
+  }
+}
+
+// Large and up
+.screen-lg-min(@rules) {
+  @media (min-width: @screen-lg-min) {
+    @rules();
+  }
+}
+
+// Large and down
+.screen-lg-max(@rules) {
+  @media (max-width: @screen-lg-max) {
+    @rules();
+  }
+}
+
+// Large only
+.screen-lg(@rules) {
+  @media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
+    @rules();
+  }
+}
+
+// Extra-large and up
+.screen-xl-min(@rules) {
+  @media (min-width: @screen-xl-min) {
+    @rules();
+  }
+}
+
+// Extra-large and down
+.screen-xl-max(@rules) {
+  @media (max-width: @screen-xl-max) {
+    @rules();
+  }
+}
+
+// Extra-large only
+.screen-xl(@rules) {
+  @media (min-width: @screen-xl-min) and (max-width: @screen-xl-max) {
+    @rules();
+  }
+}
+
+// Extra-extra-large and up
+.screen-xxl-min(@rules) {
+  @media (min-width: @screen-xxl-min) {
+    @rules();
+  }
+}
+
+//
+// Chain media queries together
+//
+// Usage:
+//
+// .my-element {
+//   .screen({
+//     color: red;    // xs and up
+//   },{
+//     color: green;  // sm and up
+//   },{
+//     color: yellow; // md and up
+//   },{
+//     color: purple; // lg and up
+//   },{
+//     color: blue;   // xl and up
+//   },{
+//     color: orange; // xxl and up
+//   });
+// }
+//
+// @link http://cbrac.co/1tB2TXR
+//
+
+.screens(@rules-xs, @rules-sm, @rules-md, @rules-lg, @rules-xl, @rules-xxl) {
+  .screen-xs-min(@rules-xs);
+  .screen-sm-min(@rules-sm);
+  .screen-md-min(@rules-md);
+  .screen-lg-min(@rules-lg);
+  .screen-xl-min(@rules-xl);
+  .screen-xxl-min(@rules-xxl);
+}

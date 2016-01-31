@@ -1,0 +1,26 @@
+{
+  "name": "disko-bundle-front",
+  "version": "0.0.0",
+  "authors": [
+    "Maxime Gauché-Daumet <maxime.g@disko.fr>"
+  ],
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "modernizr": "~3.0.0"
+  }
+}
